@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rim | A Special Gift 🎁</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --primary: #7e67b7;
+            --bg-color: #f3f0f9;
+            --accent: #dcd0ff;
+            --text-color: #4b3f72;
+            --heart-red: #ff85a1;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Garamond', serif;
+            background: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        /* GIFT OVERLAY */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #967bb6 0%, #6f5194 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 1.5s ease;
+            cursor: pointer;
+        }
+        .gift-box {
+            font-size: 85px;
+            animation: gentle-float 2.5s infinite ease-in-out;
+        }
+        @keyframes gentle-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        .click-text {
+            color: #f0ebff;
+            font-family: 'Courier New', monospace;
+            margin-top: 25px;
+            letter-spacing: 5px;
+            font-size: 0.85em;
+        }
+        /* MAIN CONTENT */
+        #main-content {
+            opacity: 0;
+            transition: opacity 2s ease;
+            max-width: 550px;
+            margin: 40px 20px;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(126, 103, 183, 0.15);
+            text-align: center;
+            display: none;
+            backdrop-filter: blur(8px);
+        }
+        h1 {
+            color: var(--primary);
+            font-family: 'Brush Script MT', cursive;
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+        .quote-box {
+            font-style: italic;
+            color: var(--primary);
+            margin: 25px 0;
+            font-size: 1.25em;
+            border-top: 1px solid var(--accent);
+            border-bottom: 1px solid var(--accent);
+            padding: 20px 0;
+        }
+        .message {
+            line-height: 1.9;
+            text-align: left;
+            font-size: 1.15em;
+            color: var(--text-color);
+            white-space: pre-line;
+            margin-bottom: 30px;
+        }
+        /* REASONS SECTION */
+        .reasons-container {
+            background: #fffafa;
+            border: 2px dashed var(--accent);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            position: relative;
+        }
+        .heart-btn {
+            font-size: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            transition: transform 0.2s;
+        }
+        .heart-btn:active { transform: scale(0.9); }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+        #reason-display {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: var(--primary);
+            font-weight: bold;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .footer {
+            margin-top: 45px;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.25em;
+        }
+        /* PETALS */
+        .petal {
+            position: fixed;
+            background: var(--accent);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            opacity: 0.6;
+            z-index: -1;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <audio id="lofiPlayer" loop>
+        <source src="https://www.chosic.com/wp-content/uploads/2021/04/Rain-And-Tea-Lofi-Chill-Melody.mp3" type="audio/mpeg">
+    </audio>
+    <div id="overlay" onclick="revealSurprise()">
+        <div class="gift-box">🎁</div>
+        <div class="click-text">FOR MY DEAREST RIM ✨</div>
+    </div>
+    <div id="main-content">
+        <h1>Happiest Birthday, Rim! 🎂💜</h1>
+        <div class="quote-box">
+            "A sister is a little bit of childhood that can never be lost." 👭✨
+        </div>
+        <div class="message">
+            I was sitting down to write this and realized how lucky I am that you’re my sister not by blood, but by a cousin who feels more like an elder sister. 🌸
+            Looking back on all our memories that we shared from childhood, playing together as kids, you’ve always been more like a sister than a cousin. 🧸 Whether we were laughing until our sides hurt or just catching up on life. ☁️
+            I truly admire you. Your kindness, support, and strength are things I’ve always looked up to. From my teenage birthdays to the hardest times of my life, you had been there for me. 🥺💖
+            Having you in my life is a blessing; your presence makes hard things easier. ✨ I am so proud of the beautiful, capable, and strongest woman you have become today. 💪🌷
+        </div>
+        <div class="reasons-container">
+            <div style="font-size: 0.9em; color: #888; margin-bottom: 10px;">Click the heart for a reason I love you...</div>
+            <button class="heart-btn" onclick="showNewReason()">💖</button>
+            <div id="reason-display">Click to reveal ✨</div>
+        </div>
+        <div class="footer">
+            Love you so much, Rim!! ❤️✨<br>
+            <span style="font-size: 0.8em; font-family: sans-serif; opacity: 0.8;">Yours, Chui / Lil Sister 🎀</span>
+        </div>
+    </div>
+    <script>
+        const reasons = [
+            "Your unwavering strength in tough times. 💪",
+            "Your genuine kindness that touches everyone. 🌸",
+            "Your authenticity and staying true to yourself. ✨",
+            "Your wisdom when I'm feeling lost. 🧠💜",
+            "Our shared history and childhood memories. 🧸",
+            "Being my safe space where I'm never judged. 🏠❤️",
+            "Your constant support through my hardest times. 🥺",
+            "The way you prove family is more than just blood. 👭",
+            "Your contagious laugh that brightens my day. 😂✨",
+            "The way you've always protected me like a big sister. 🛡️💖",
+            "Your belief in me even when I don't see it. 🌈",
+            "Simply because the world is better with you in it! 🌎"
+        ];
+        function showNewReason() {
+            const display = document.getElementById('reason-display');
+            display.style.opacity = 0;
+            // Randomly pick a reason
+            const randomReason = reasons[Math.floor(Math.random() * reasons.length)];
+            setTimeout(() => {
+                display.innerText = randomReason;
+                display.style.opacity = 1;
+                // Little extra confetti pop!
+                confetti({
+                    particleCount: 20,
+                    spread: 30,
+                    origin: { y: 0.8 },
+                    colors: ['#ff85a1', '#7e67b7']
+                });
+            }, 300);
+        }
+        function revealSurprise() {
+            const music = document.getElementById('lofiPlayer');
+            music.volume = 0.4;
+            music.play();
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#7e67b7', '#dcd0ff', '#ffffff']
+            });
+            document.getElementById('overlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('overlay').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.display = 'block';
+                setTimeout(() => { main.style.opacity = '1'; }, 100);
+            }, 1500);
+        }
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            const size = Math.random() * 8 + 5 + 'px';
+            petal.style.width = size;
+            petal.style.height = size;
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.animationDuration = Math.random() * 5 + 7 + 's';
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 12000);
+        }
+        setInterval(createPetal, 500);
+    </script>
+</body>
+</html>
